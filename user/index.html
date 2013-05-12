@@ -1,0 +1,60 @@
+<!-- Creted by: Rohan Malcolm
+	Created for: JUTC Tracking System
+	This is the search page that uses jquery to post search criteria to the search.php file and then displays result
+	in a table
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Search</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="jquery.form.js"></script>
+		<style type="text/css">
+			#active_bus{
+				margin-top: 20px;
+			}
+		</style>
+		<script type="text/javascript">//script that validates form input
+			function check(form)
+			{
+				var from = form["from"].value;
+				var to = form["to"].value;
+				from.replace(/\s+/g, '');
+				to.replace(/\s+/g, '');
+				if(from == "")
+				{
+					alert("The from field cannot be empty");
+					return false;
+				}
+				else if(to == "")
+				{
+					alert("The to field cannot be empty");
+					return false;
+				}
+				return true;
+			}
+		</script>
+	</head>
+
+	<body>
+		<!-- form for user to enter desired informations -->
+		<form id="search" method="POST" onSubmit="return check(this);" name="searchForm" action="search.php">
+			From: <input type="text" name="from"></br>
+			To: <input type="text" name="to"></br>
+			<input type="submit">
+		</form>
+		<div id="active_bus"></div>
+		<!-- Jquery that will call search.php to get results it will return a result and place it in a div
+		this is what allows the page not to be refreshed -->
+		<script type="text/javascript">
+			/*$("#search").ajaxForm({
+				url: 'search.php',
+				success: function(data)
+				{
+					$("#active_bus").html(data);
+				}
+			});*/
+		</script>
+	</body>
+
+</html>
